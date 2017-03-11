@@ -6,24 +6,6 @@
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/madewithlove/illuminate-psr-cache-bridge.svg?style=flat-square)](https://scrutinizer-ci.com/g/madewithlove/illuminate-psr-cache-bridge)
 [![Quality Score](https://img.shields.io/scrutinizer/g/madewithlove/illuminate-psr-cache-bridge.svg?style=flat-square)](https://scrutinizer-ci.com/g/madewithlove/illuminate-psr-cache-bridge)
 
-## Usage
-
-To start using a `Psr\Cache\CacheItemPoolInterface` typed implementation that stores data in Laravel's configured cache, add this to a service provider:
-
-```php
-use Illuminate\Contracts\Cache\Repository;
-use Madewithlove\IlluminatePsrCacheBridge\Laravel\CacheItemPool;
-use Psr\Cache\CacheItemPoolInterface;
-
-$this->app->share(CacheItemPoolInterface::class, function () {
-    $repository = $this->app->make(Repository::class);
-
-    return new CacheItemPool($repository);
-});
-```
-
-Right now you're all set to start injecting `CacheItemPoolInterface`'d everywhere you need it.
-
 ## Install
 
 In order to install it via composer you should run this command:
@@ -31,6 +13,16 @@ In order to install it via composer you should run this command:
 ```bash
 composer require madewithlove/illuminate-psr-cache-bridge
 ```
+
+## Usage
+
+To start using a `Psr\Cache\CacheItemPoolInterface` typed implementation that stores data in Laravel's configured cache, add the following service provider to the `providers` offset in `config/app.php` :
+
+```
+Madewithlove\IlluminatePsrCacheBridge\Providers\IlluminatePsrCacheServiceProvider::class,
+```
+
+Now you're all set to start injecting `CacheItemPoolInterface`'d everywhere you need it.
 
 ## Testing
 
